@@ -12,7 +12,11 @@ def write_to_file(content, file_path: Path, json_dumps=False, indent=None):
     file_path.parent.mkdir(parents=True, exist_ok=True)
     with open(file_path, mode="w") as f:
         if json_dumps:
-            return f.write(json.dumps(content, indent=indent, default=serialize_sets))
+            return f.write(
+                json.dumps(
+                    content, indent=indent, ensure_ascii=False, default=serialize_sets
+                )
+            )
         return f.write(content)
 
 
