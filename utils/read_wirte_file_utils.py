@@ -20,6 +20,12 @@ def write_to_file(content, file_path: Path, json_dumps=False, indent=None):
         return f.write(content)
 
 
+def write_binary_to_file(content, file_path: Path):
+    file_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(file_path, mode="wb") as f:
+        return f.write(content)
+
+
 def read_file(file_path, json_loads):
     with open(file_path, "r") as file:
         if json_loads:
